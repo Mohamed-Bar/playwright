@@ -16,4 +16,4 @@ const testpages = _baseTest.extend<pages>({
     }
 })
 export const test = testpages;
-export const expect = test.expect;
+export const expect = testpages.expect;
