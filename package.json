@@ -11,14 +11,13 @@
     "posttest": "npm run gen:reports && npm run open:reports",
     "script:to:run": "npx playwright test pom",
     "test:headed": "npx playwright test --headed",
-    "test" :  "npm run script:to:run || npm run posttest"
-
+    "test": "npm run script:to:run || npm run posttest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.55.0",
+    "@playwright/test": "^1.55.1",
     "@types/node": "^24.3.0",
     "allure-commandline": "^2.34.1",
     "allure-playwright": "^3.4.1",
