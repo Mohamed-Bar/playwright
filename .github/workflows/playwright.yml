@@ -1,0 +1,31 @@
+name:  morning pipeline for Playwright Tests
+on:
+
+ schedule:
+    - cron: '0 9 * * *'  # Runs at 9 AM every day
+ push:
+    branches: 
+    - '**'
+ pull_request:
+    branches: [ main ]
+jobs:
+  playwright-tests:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install chromium --with-deps
+    - name: Run Playwright tests
+      run: npx playwright test pom
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: allure-playwright-report
+        path: allure-report/
+        retention-days: 30
