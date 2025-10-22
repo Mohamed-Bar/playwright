@@ -1,9 +1,12 @@
 name:  morning pipeline for Playwright Tests
 on:
-  push:
+
+schedule:
+    - cron: '0 9 * * *'  # Runs at 9 AM every day
+push:
     branches: 
     - '**'
-  pull_request:
+pull_request:
     branches: [ main ]
 jobs:
   playwright test:

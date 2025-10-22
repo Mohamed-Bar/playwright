@@ -40,7 +40,7 @@ test ('E2E@smoke', async ({page})=> {
 test ('E2E2@smoke', async ({page})=> {
     const loginPage = new LoginPage(page);
     const productPage = new ProductPage(page);
-    await page.goto('https://www.saucedemo.com/');
+    await page.goto('https://www.saucedemo.com/',{ timeout: 90000 });
     await loginPage.enterusername(testdata.username);
     await loginPage.enterpassword(testdata.password);
     await loginPage.takeScreenshot('./tests/screenshots/loginpage.png');
@@ -51,5 +51,5 @@ test ('E2E2@smoke', async ({page})=> {
     await productPage.takeScreenshot('./tests/screenshots/cartpage.png');
     page.close();
 
-})
+}, 90000)
 ;
