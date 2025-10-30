@@ -1,3 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","8634","E2E2@smoke","chromium","Sun Oct 26 22:17:36 UTC 2025","passed","Sun Oct 26 22:17:45 UTC 2025","","pom.spec.ts","",""
-"","10021","E2E@smoke","chromium","Sun Oct 26 22:17:25 UTC 2025","passed","Sun Oct 26 22:17:35 UTC 2025","","pom.spec.ts","",""
+"","9","E2E2@smoke","chromium","Tue Oct 28 18:45:58 EEST 2025","failed","Tue Oct 28 18:45:58 EEST 2025","","pom.spec.ts","",""
+"","83","E2E@smoke","chromium","Tue Oct 28 18:45:48 EEST 2025","failed","Tue Oct 28 18:45:48 EEST 2025","","pom.spec.ts","",""
+"","8507","alerts prompt","chromium","Tue Oct 28 19:22:02 EEST 2025","passed","Tue Oct 28 19:22:10 EEST 2025","","actions.spec.ts","",""
