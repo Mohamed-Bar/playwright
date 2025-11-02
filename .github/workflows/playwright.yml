@@ -1,14 +1,13 @@
 name:  morning pipeline for Playwright Tests
 on:
-
- schedule:
+  schedule:
     - cron: '0 9 * * *'  # Runs at 9 AM every day
- push:
+  push:
     branches: 
     - 'master'
- pull_request:
+  pull_request:
     branches: [ main ]
- workflow_dispatch:
+  workflow_dispatch:
     inputs:
       test-to-run:
         description: 'add your npx code here'
@@ -35,21 +34,33 @@ on:
           - 'firefox'
           - 'webkit'
 
-
-    
 jobs:
   playwright-tests:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
+        
     - name: Install dependencies
       run: npm ci
+      
+    # Add cache for Playwright browsers
+    - name: Cache Playwright browsers
+      id: playwright-cache
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/ms-playwright
+        # Cache key based on OS, Playwright version from package-lock.json and selected browser
+        key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}-${{ github.event.inputs.browsers || 'chromium' }}
+        
+    # Install browsers only if cache miss
     - name: Install Playwright Browsers
-      run: npx playwright install  --with-deps
+      if: steps.playwright-cache.outputs.cache-hit != 'true'
+      run: npx playwright install --with-deps ${{ github.event.inputs.browsers || 'chromium' }}
 
     - name: Run Playwright tests
       env:
@@ -67,14 +78,12 @@ jobs:
         path: allure-report/
         retention-days: 30
 
-
     - name: upload allure report
       uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
         name: playwright-tests-report
         path: test-results/
-        retention-days: 30       
+        retention-days: 30
 
 
-  
