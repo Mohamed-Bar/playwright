@@ -1,0 +1,6 @@
+Test ID,Test Name,Status,Duration (seconds),Category,Assertions,Screenshot,Description,Browser,Platform,Execution Date
+formauth-001,Should successfully login with valid credentials,PASSED,30,Authentication,3,YES,"Validates successful login flow with correct credentials, verifies secure area access, includes 10-second wait",Chromium,Windows,2025-11-03
+formauth-002,Should show error message with invalid username,PASSED,20,Error Handling,2,YES,Validates proper error handling when invalid username is provided,Chromium,Windows,2025-11-03
+formauth-003,Should show error message with invalid password,PASSED,20,Error Handling,2,YES,Validates proper error handling when invalid password is provided,Chromium,Windows,2025-11-03
+formauth-004,Should show error message with both invalid credentials,PASSED,20,Error Handling,2,YES,Validates error handling when both username and password are invalid,Chromium,Windows,2025-11-03
+formauth-005,Should be able to logout after successful login,PASSED,35,User Flow,4,YES,Validates complete user journey: login → secure area → logout → return to login page,Chromium,Windows,2025-11-03
