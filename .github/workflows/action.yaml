@@ -1,0 +1,68 @@
+name: Reusable Workflow
+on:
+  workflow_call:
+    inputs:
+      test-to-run:
+        type: string
+        required: false
+        default: 'npm run script:to:run'
+      workers:
+        type: string
+        required: false
+        default: '1'
+      browsers:
+        type: string
+        required: false
+        default: 'chromium'
+
+jobs:
+  playwright-tests:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+        
+    - name: Install dependencies
+      run: npm ci
+
+    # Add cache for Playwright browsers
+    - name: Cache Playwright browsers
+      id: playwright-cache
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/ms-playwright
+        # Cache key based on OS, Playwright version from package-lock.json and selected browser
+        key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}-${{ inputs.browsers }}
+        
+    # Install browsers only if cache miss
+    - name: Install Playwright Browsers
+      if: steps.playwright-cache.outputs.cache-hit != 'true'
+      run: npx playwright install --with-deps ${{ inputs.browsers }}
+
+    - name: Run Playwright tests
+      env:
+        test-to-run: ${{ inputs.test-to-run }}
+        workers: ${{ inputs.workers }}
+        browsers: ${{ inputs.browsers }}
+      run: |
+        ${{env.test-to-run}} --workers=${{env.workers}} --project=${{env.browsers}} || npm run posttest  
+        
+    - name: upload allure report
+      uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: allure-playwright-report
+        path: allure-report/
+        retention-days: 30
+
+    - name: upload test results
+      uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: playwright-tests-report
+        path: test-results/
+        retention-days: 30
