@@ -1,0 +1,30 @@
+name: playwright tests security-scans
+on: 
+  workflow_run:
+    workflows: [morning pipeline for Playwright Tests]
+    types:
+      - completed
+    
+jobs:
+  Run-snyk-scan:
+    name: Snykscan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        continue-on-error: true # To make sure that SARIF upload gets called
+        
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  Run-snoarqube-scan: 
+    name: SonarQube
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v6
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

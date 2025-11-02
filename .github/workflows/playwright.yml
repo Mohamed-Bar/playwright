@@ -59,22 +59,22 @@ jobs:
       run: |
         ${{env.test-to-run}} --workers=${{env.workers}} --project=${{env.browsers}} || npm run posttest  
         
-    - name: Run Snyk to check for vulnerabilities
-      uses: snyk/actions/node@master
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-    - name: upload allure reports 
+    - name: upload allure report
       uses: actions/upload-artifact@v4
-
       if: ${{ !cancelled() }}
       with:
         name: allure-playwright-report
         path: allure-report/
         retention-days: 30
 
-    - name: ZAP Scan
-      uses: zaproxy/action-full-scan@v0.13.0
+
+    - name: upload allure report
+      uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
       with:
-       target: 'https://the-internet.herokuapp.com/'
+        name: playwright-tests-report
+        path: test-results/
+        retention-days: 30       
+
 
   
