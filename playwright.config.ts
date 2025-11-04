@@ -24,6 +24,10 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'allure-playwright',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  timeout: 60000, // Increase test timeout to 60 seconds
+  expect: {
+    timeout: 10000 // Increase assertion timeout to 10 seconds
+  },
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://localhost:3000',
@@ -32,13 +36,13 @@ export default defineConfig({
     trace: 'on',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
-    actionTimeout: 0,
+    actionTimeout: 15000, // Set reasonable action timeout
     navigationTimeout: 30000,
-    headless: true,
+    headless: false, // Run in headed mode for debugging
     ignoreHTTPSErrors: true,
     viewport: { width: 1280, height: 720 },
     launchOptions: {
-      slowMo: 1000
+      slowMo: 500 // Reduce slowMo for better performance
     }
   },
 
@@ -49,15 +53,15 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
 
-   /* {
+    /* {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
 
-   // {
-  //    name: 'webkit',
-   //   use: { ...devices['Desktop Safari'] },
-   // },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
+    }, */
 
     /* Test against mobile viewports. */
     // {

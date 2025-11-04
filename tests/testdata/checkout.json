@@ -1,0 +1,74 @@
+{
+  "validCheckoutInfo": {
+    "firstName": "John",
+    "lastName": "Doe", 
+    "postalCode": "12345",
+    "description": "Valid checkout information"
+  },
+  "internationalCheckout": {
+    "firstName": "Maria",
+    "lastName": "García",
+    "postalCode": "28001",
+    "description": "International address format"
+  },
+  "longNameCheckout": {
+    "firstName": "Christopher",
+    "lastName": "Wojciechowski-Smith", 
+    "postalCode": "SW1A 1AA",
+    "description": "Long names and UK postal code"
+  },
+  "invalidCheckoutScenarios": [
+    {
+      "scenario": "missing_first_name",
+      "firstName": "",
+      "lastName": "Doe",
+      "postalCode": "12345", 
+      "expectedError": "Error: First Name is required"
+    },
+    {
+      "scenario": "missing_last_name", 
+      "firstName": "John",
+      "lastName": "",
+      "postalCode": "12345",
+      "expectedError": "Error: Last Name is required"
+    },
+    {
+      "scenario": "missing_postal_code",
+      "firstName": "John", 
+      "lastName": "Doe",
+      "postalCode": "",
+      "expectedError": "Error: Postal Code is required"
+    },
+    {
+      "scenario": "all_empty",
+      "firstName": "",
+      "lastName": "", 
+      "postalCode": "",
+      "expectedError": "Error: First Name is required"
+    }
+  ],
+  "paymentInfo": {
+    "cardNumber": "4111111111111111",
+    "expiryDate": "12/25",
+    "cvv": "123",
+    "description": "Test credit card information"
+  },
+  "shippingOptions": [
+    {
+      "id": "standard",
+      "name": "Standard Shipping",
+      "cost": 0,
+      "description": "Free standard shipping"
+    },
+    {
+      "id": "express", 
+      "name": "Express Shipping",
+      "cost": 9.99,
+      "description": "Express shipping option"
+    }
+  ],
+  "taxCalculation": {
+    "taxRate": 0.08,
+    "description": "8% tax rate applied to subtotal"
+  }
+}

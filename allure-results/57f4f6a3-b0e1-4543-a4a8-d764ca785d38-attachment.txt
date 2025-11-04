@@ -1,0 +1,5 @@
+Performance user login took: 6259ms
+Adding product took: 1063ms
+Cart navigation took: 1149ms
+Total performance user journey took: 12552ms
+✅ Performance user journey completed with timing metrics

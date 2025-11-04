@@ -1,10 +1,9 @@
 import { Locator} from "@playwright/test";
 import BasePage from "../basepage";
 
-export default class loginPage extends BasePage {
-    [x: string]: any;
+export default class LoginPage extends BasePage {
     private readonly usernamefield = this.page.locator('[id="user-name"]');
-    private readonly passwordfelid = this.page.locator('[id="password"]');
+    private readonly passwordfield = this.page.locator('[id="password"]');
     private readonly loginButton = this.page.locator('#login-button');
     
     async enterusername(username: string) {
@@ -12,10 +11,10 @@ export default class loginPage extends BasePage {
     }
 
     async enterpassword(password: string) {
-        await this.enterTextToElement(this.passwordfelid, password);
+        await this.enterTextToElement(this.passwordfield, password);
     }
 
     async clickonloginbutton() {
-        await this.clcikonElement(this.loginButton);
+        await this.clickonElement(this.loginButton);
     }
 }

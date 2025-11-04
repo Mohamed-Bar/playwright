@@ -1,0 +1,46 @@
+{
+  "standardUser": {
+    "username": "standard_user",
+    "password": "secret_sauce",
+    "description": "Standard user with full access",
+    "expectedBehavior": "normal"
+  },
+  "lockedUser": {
+    "username": "locked_out_user", 
+    "password": "secret_sauce",
+    "description": "Locked out user",
+    "expectedBehavior": "locked",
+    "expectedError": "Epic sadface: Sorry, this user has been locked out."
+  },
+  "problemUser": {
+    "username": "problem_user",
+    "password": "secret_sauce", 
+    "description": "User with UI problems",
+    "expectedBehavior": "ui_problems"
+  },
+  "performanceUser": {
+    "username": "performance_glitch_user",
+    "password": "secret_sauce",
+    "description": "User with performance issues",
+    "expectedBehavior": "slow_performance"
+  },
+  "errorUser": {
+    "username": "error_user",
+    "password": "secret_sauce",
+    "description": "User that encounters errors",
+    "expectedBehavior": "errors"
+  },
+  "visualUser": {
+    "username": "visual_user",
+    "password": "secret_sauce", 
+    "description": "User with visual differences",
+    "expectedBehavior": "visual_differences"
+  },
+  "invalidUser": {
+    "username": "invalid_user",
+    "password": "secret_sauce",
+    "description": "Non-existent user",
+    "expectedBehavior": "invalid_credentials",
+    "expectedError": "Epic sadface: Username and password do not match any user in this service"
+  }
+}

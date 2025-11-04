@@ -1,0 +1,46 @@
+{
+  "performanceBenchmarks": {
+    "standardUser": {
+      "loginTime": 2000,
+      "inventoryLoadTime": 3000, 
+      "cartLoadTime": 2000,
+      "checkoutLoadTime": 2500,
+      "description": "Expected load times for standard user in milliseconds"
+    },
+    "performanceGlitchUser": {
+      "loginTime": 5000,
+      "inventoryLoadTime": 8000,
+      "cartLoadTime": 6000, 
+      "checkoutLoadTime": 7000,
+      "description": "Expected slower load times for performance glitch user"
+    }
+  },
+  "networkConditions": [
+    {
+      "name": "fast3g",
+      "downloadThroughput": 1600000,
+      "uploadThroughput": 750000,
+      "latency": 150,
+      "description": "Fast 3G network simulation"
+    },
+    {
+      "name": "slow3g", 
+      "downloadThroughput": 500000,
+      "uploadThroughput": 500000,
+      "latency": 400,
+      "description": "Slow 3G network simulation"
+    }
+  ],
+  "memoryThresholds": {
+    "maxHeapSize": "100MB",
+    "maxJSHeapSize": "50MB", 
+    "description": "Memory usage thresholds for performance testing"
+  },
+  "performanceMetrics": [
+    "First Contentful Paint",
+    "Largest Contentful Paint", 
+    "Time to Interactive",
+    "Total Blocking Time",
+    "Cumulative Layout Shift"
+  ]
+}
