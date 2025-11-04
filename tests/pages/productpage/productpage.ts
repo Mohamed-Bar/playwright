@@ -5,9 +5,9 @@ import BasePage from "../basepage";
     private readonly addToCartButton = this.page.locator('[id="add-to-cart-sauce-labs-backpack"]');
     private readonly shoppingCartIcon = this.page.locator('[id="shopping_cart_container"]');   
     async clickOnAddToCartButton() {
-        await this.clcikonElement(this.addToCartButton);
+        await this.clickonElement(this.addToCartButton);
     }       
     async clickOnShoppingCartIcon() {
-        await this.clcikonElement(this.shoppingCartIcon);
+        await this.clickonElement(this.shoppingCartIcon);
     }
     }
